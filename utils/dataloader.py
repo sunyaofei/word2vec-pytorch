@@ -25,6 +25,7 @@ def get_english_tokenizer():
 
 def get_data_iterator(ds_name, ds_type, data_dir):
     if ds_name == "WikiText2":
+        # https://huggingface.co/datasets/wikitext
         data_iter = WikiText2(root=data_dir, split=(ds_type))
     elif ds_name == "WikiText103":
         data_iter = WikiText103(root=data_dir, split=(ds_type))
@@ -128,6 +129,7 @@ def get_dataloader_and_vocab(
     tokenizer = get_english_tokenizer()
 
     if not vocab:
+        # word -> idx
         vocab = build_vocab(data_iter, tokenizer)
         
     text_pipeline = lambda x: vocab(tokenizer(x))

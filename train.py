@@ -16,6 +16,9 @@ from utils.helper import (
 
 
 def train(config):
+    # if os.listdir(config["model_dir"]):
+    if os.path.exists(config["model_dir"]):
+        os.rmdir(config["model_dir"])
     os.makedirs(config["model_dir"])
     
     train_dataloader, vocab = get_dataloader_and_vocab(
